@@ -26,8 +26,8 @@ local EMAHelperSettings = LibStub:GetLibrary( "EMAHelperSettings-1.0" )
 local LibBagUtils = LibStub:GetLibrary( "LibBagUtils-1.0" )
 local LibButtonGlow = LibStub:GetLibrary( "LibButtonGlow-1.0" )
 EMA.SharedMedia = LibStub( "LibSharedMedia-3.0" )
-local TrufiGCD = C_AddOns.IsAddOnLoaded( "TrufiGCD" )
-TrufiGCDGlSave = TrufiGCDGlSave
+--local TrufiGCD = C_AddOns.IsAddOnLoaded( "TrufiGCD" )
+--TrufiGCDGlSave = TrufiGCDGlSave
 
 
 -- Constants required by EMAModule and Locale for this module.
@@ -101,10 +101,10 @@ EMA.settings = {
 		comboStatusHeight = 10,
 		comboStatusShowValues = true,
 		comboStatusShowPercentage = true,		
-		showGCDFrame = false, 
-		gCDFrameWidth = 3,
-		gCDFrameHeight = 15,
-		gCDFrameToolTips = true,
+--		showGCDFrame = false, 
+--		gCDFrameWidth = 3,
+--		gCDFrameHeight = 15,
+--		gCDFrameToolTips = true,
 		framePoint = "LEFT",
 		frameRelativePoint = "LEFT",
 		frameXOffset = 0,
@@ -221,7 +221,7 @@ local function GetCharacterHeight()
 	local heightHealthStatus = 0
 	local heightPowerStatus = 0
 	local heightComboStatus = 0		
-	local heightGcdFrame = 0
+--	local heightGcdFrame = 0
 	local heightAllBars = 0
 	if EMA.db.showCharacterPortrait == true then
 		heightPortrait = EMA.db.characterPortraitWidth + EMA.db.teamListVerticalSpacing
@@ -246,15 +246,17 @@ local function GetCharacterHeight()
 		heightComboStatus = EMA.db.comboStatusHeight + EMA.db.barVerticalSpacing
 		heightAllBars = heightAllBars + heightComboStatus
 	end	
+	--[[
 	if EMA.db.showGCDFrame == true then
 		heightGcdFrame = EMA.db.gCDFrameHeight + EMA.db.barVerticalSpacing
 		heightAllBars = heightAllBars + heightGcdFrame
 	end	
+	]]
 	if EMA.db.barsAreStackedVertically == true then
 		height = max( heightPortrait, heightAllBars )
 	
 	else
-		height = max( heightPortrait, heightFollowStatus, heightExperienceStatus, heightHealthStatus, heightPowerStatus, heightComboStatus, heightGcdFrame )
+		height = max( heightPortrait, heightFollowStatus, heightExperienceStatus, heightHealthStatus, heightPowerStatus, heightComboStatus) --, heightGcdFrame )
 		--height = max( heightPortrait, heightBagInformation, heightFollowStatus, heightExperienceStatus, heightReputationStatus, heightHealthStatus, heightPowerStatus, heightComboStatus, heightGcdFrame)
 	end
 	return height
@@ -268,7 +270,7 @@ local function GetCharacterWidth()
 	local widthHealthStatus = 0
 	local widthPowerStatus = 0
 	local widthComboStatus = 0	
-	local widthGcdFrame = 0
+--	local widthGcdFrame = 0
 	local widthAllBars = 0
 	if EMA.db.showCharacterPortrait == true then
 		widthPortrait = EMA.db.characterPortraitWidth + EMA.db.teamListHorizontalSpacing
@@ -293,13 +295,14 @@ local function GetCharacterWidth()
 		widthComboStatus = EMA.db.comboStatusWidth + EMA.db.barHorizontalSpacing
 		widthAllBars = widthAllBars + widthComboStatus		
 	end
+	--[[
 	if EMA.db.showGCDFrame == true then
 		widthGcdFrame = ( EMA.db.gCDFrameWidth * EMA.db.gCDFrameHeight + EMA.db.gCDFrameHeight ) + EMA.db.barHorizontalSpacing
 		widthAllBars = widthAllBars +  widthGcdFrame
 	end		
-	
+	]]
 	if EMA.db.barsAreStackedVertically == true then
-		width = widthPortrait + max( widthFollowStatus, widthExperienceStatus, widthHealthStatus, widthPowerStatus, widthComboStatus,  widthGcdFrame )
+		width = widthPortrait + max( widthFollowStatus, widthExperienceStatus, widthHealthStatus, widthPowerStatus, widthComboStatus )-- ,  widthGcdFrame )
 		--width = widthPortrait + max( widthBagInformation, widthFollowStatus, widthExperienceStatus, widthReputationStatus, widthHealthStatus, widthPowerStatus, widthComboStatus,  widthGcdFrame )
 	else
 		width = widthPortrait + widthAllBars
@@ -499,7 +502,7 @@ function EMA:SettingsUpdateFontStyle()
 		characterStatusBar["healthBarText"]:SetFont( textFont , textSize , "OUTLINE")
 		characterStatusBar["powerBarText"]:SetFont( textFont , textSize , "OUTLINE")
 		characterStatusBar["comboBarText"]:SetFont( textFont , textSize , "OUTLINE")
-		characterStatusBar["GCDFrameText"]:SetFont( textFont , textSize , "OUTLINE")
+		--characterStatusBar["GCDFrameText"]:SetFont( textFont , textSize , "OUTLINE")
 	end
 end
 
@@ -738,7 +741,7 @@ function EMA:CreateEMATeamStatusBar( characterName, parentFrame )
 	comboBarText.playerMaxCombo = 5
 	characterStatusBar["comboBarText"] = comboBarText
 	EMA:UpdateComboStatus( characterName, nil, nil )
-	
+	--[[
 	-- Set the GCD Bar.
 	local gCDFrameName = EMA.globalFramePrefix.."GCDFrame"
 	local gCDFrame = CreateFrame( "Frame", gCDFrameName, parentFrame )
@@ -753,8 +756,8 @@ function EMA:CreateEMATeamStatusBar( characterName, parentFrame )
 	gCDFrameText:SetFont( textFont , textSize, "OUTLINE")
 	gCDFrameText:SetAllPoints()
 	characterStatusBar["GCDFrameText"] = gCDFrameText
-	EMA:SetTrGCOpt()	
-
+	--EMA:SetTrGCOpt()	
+]]
 	-- Add the health and power click bars to ClickCastFrames for addons like Clique to use.
 	--Ebony if Support for Clique if not on then default to target unit
 	--TODO there got to be a better way to doing this for sure but right now i can not be assed to do this for now you need to reload the UI when turning off and on clique support. 
@@ -805,7 +808,7 @@ function EMA:HideEMATeamStatusBar( characterName )
 	characterStatusBar["powerBarClick"]:Hide()
 	characterStatusBar["comboBar"]:Hide()
 	characterStatusBar["comboBarClick"]:Hide()
-	characterStatusBar["GCDFrame"]:Hide()
+--	characterStatusBar["GCDFrame"]:Hide()
 end	
 
 
@@ -1160,6 +1163,7 @@ function EMA:UpdateEMATeamStatusBar( characterName, characterPosition )
 	end	
 
 	-- Display the GCD.
+	--[[
 	local GCDFrame = characterStatusBar["GCDFrame"]
 	if EMA.db.showGCDFrame == true then
 		--GCDFrame.backgroundTexture:SetAllPoints()
@@ -1176,8 +1180,8 @@ function EMA:UpdateEMATeamStatusBar( characterName, characterPosition )
 	else
 		GCDFrame:Hide()
 	end	
+	]]
 end
-
 -------------------------------------------------------------------------------------------------------------
 -- Settings Dialogs.
 -------------------------------------------------------------------------------------------------------------
@@ -1715,9 +1719,10 @@ local function SettingsCreateDisplayOptions( top )
 	EMA.settingsControl.displayOptionsComboStatusHeightSlider:SetSliderValues( 10, 60, 1 )
 	EMA.settingsControl.displayOptionsComboStatusHeightSlider:SetCallback( "OnValueChanged", EMA.SettingsChangeComboStatusHeight )
 	movingTop = movingTop - sliderHeight - sectionSpacing
+--[[
 	-- Create GCD Frame.
 	EMAHelperSettings:CreateHeading( EMA.settingsControl, L["GCD_FRAME_HEADER"], movingTop, true )
-	movingTop = movingTop - headingHeight
+	movingTop = movingTop - headingHeight	
 	EMA.settingsControl.displayOptionsCheckBoxShowGcdFrame = EMAHelperSettings:CreateCheckBox( 
 		EMA.settingsControl, 
 		thirdWidth, 
@@ -1726,8 +1731,7 @@ local function SettingsCreateDisplayOptions( top )
 		L["SHOW"],
 		EMA.SettingsToggleShowGcdFrame,
 		L["GCD_FRAME"] 
-	)	
---[[
+	)
 	EMA.settingsControl.displayOptionsCheckBoxShowGcdFrameToolTips = EMAHelperSettings:CreateCheckBox( 
 		EMA.settingsControl, 
 		thirdWidth, 
@@ -1737,7 +1741,7 @@ local function SettingsCreateDisplayOptions( top )
 		EMA.SettingsToggleShowGcdFrameToolTips,
 		L["TOOLTIPS_HELP"]
 	)	
-]]			
+			
 	movingTop = movingTop - checkBoxHeight - verticalSpacing
 	EMA.settingsControl.displayOptionsGcdFrameWidthSlider = EMAHelperSettings:CreateSlider( 
 		EMA.settingsControl, 
@@ -1757,7 +1761,7 @@ local function SettingsCreateDisplayOptions( top )
 	)
 	EMA.settingsControl.displayOptionsGcdFrameHeightSlider:SetSliderValues( 15, 60 , 1 )
 	EMA.settingsControl.displayOptionsGcdFrameHeightSlider:SetCallback( "OnValueChanged", EMA.SettingsChangeGcdFrameHeight )
-	
+	]]
 	movingTop = movingTop - sliderHeight - sectionSpacing
 	return movingTop
 end
@@ -1842,11 +1846,13 @@ function EMA:SettingsRefresh()
 	EMA.settingsControl.displayOptionsCheckBoxShowComboStatusPercentage:SetValue( EMA.db.comboStatusShowPercentage )	
 	EMA.settingsControl.displayOptionsComboStatusWidthSlider:SetValue( EMA.db.comboStatusWidth )
 	EMA.settingsControl.displayOptionsComboStatusHeightSlider:SetValue( EMA.db.comboStatusHeight )	
+	--[[
 	EMA.settingsControl.displayOptionsCheckBoxShowGcdFrame:SetValue( EMA.db.showGCDFrame )
 	EMA.settingsControl.displayOptionsGcdFrameWidthSlider:SetValue( EMA.db.gCDFrameWidth )
 	EMA.settingsControl.displayOptionsGcdFrameHeightSlider:SetValue( EMA.db.gCDFrameHeight )	
 	EMA.settingsControl.displayOptionsBackgroundColourPicker:SetColor( EMA.db.frameBackgroundColourR, EMA.db.frameBackgroundColourG, EMA.db.frameBackgroundColourB, EMA.db.frameBackgroundColourA )
 	EMA.settingsControl.displayOptionsBorderColourPicker:SetColor( EMA.db.frameBorderColourR, EMA.db.frameBorderColourG, EMA.db.frameBorderColourB, EMA.db.frameBorderColourA )
+	]]
 	-- State.
 	-- Trying to change state in combat lockdown causes taint. Let's not do that. Eventually it would be nice to have a "proper state driven team display",
 	-- but this workaround is enough for now.
@@ -1899,11 +1905,13 @@ function EMA:SettingsRefresh()
 		EMA.settingsControl.displayOptionsCheckBoxShowComboStatusPercentage:SetDisabled( not EMA.db.showTeamList or not EMA.db.showComboStatus)
 		EMA.settingsControl.displayOptionsComboStatusWidthSlider:SetDisabled( not EMA.db.showTeamList or not EMA.db.showComboStatus)
 		EMA.settingsControl.displayOptionsComboStatusHeightSlider:SetDisabled( not EMA.db.showTeamList or not EMA.db.showComboStatus)
+		--[[
 		EMA.settingsControl.displayOptionsCheckBoxShowGcdFrame:SetDisabled( not EMA.db.showTeamList )
 		EMA.settingsControl.displayOptionsGcdFrameWidthSlider:SetDisabled( not EMA.db.showTeamList or not EMA.db.showGCDFrame)
 		EMA.settingsControl.displayOptionsGcdFrameWidthSlider:SetDisabled( not EMA.db.showTeamList or not EMA.db.showGCDFrame)
 		EMA.settingsControl.displayOptionsBackgroundColourPicker:SetDisabled( not EMA.db.showTeamList )
 		EMA.settingsControl.displayOptionsBorderColourPicker:SetDisabled( not EMA.db.showTeamList )
+		]]
 		if EMA.teamListCreated == true then
 			EMA:RefreshTeamListControls()
 			EMA:SettingsUpdateBorderStyle()
@@ -1916,7 +1924,7 @@ function EMA:SettingsRefresh()
 			EMA:SettingsUpdateHealthAll()
 			EMA:SettingsUpdatePowerAll()
 			EMA:SettingsUpdateComboAll()
-			EMA:SetTrGCOpt()
+			--EMA:SetTrGCOpt()
 		end
 	else
 		EMA.updateSettingsAfterCombat = true
@@ -2260,7 +2268,7 @@ function EMA:SettingsChangeComboStatusHeight( event, value )
 	EMA.db.comboStatusHeight = tonumber( value )
 	EMA:SettingsRefresh()
 end
-
+--[[
 function EMA:SettingsToggleShowGcdFrame( event, checked )
 	--EMA:Print("test")
 	EMA.db.showGCDFrame = checked
@@ -2281,7 +2289,7 @@ function EMA:SettingsChangeGcdFrameHeight( event, value )
 	EMA.db.gCDFrameHeight = tonumber( value )
 	EMA:SettingsRefresh()
 end
-
+]]
 function EMA:SettingsBackgroundColourPickerChanged( event, r, g, b, a )
 	EMA.db.frameBackgroundColourR = r
 	EMA.db.frameBackgroundColourG = g
@@ -3255,7 +3263,7 @@ end
 -------------------------------------------------------------------------------------------------------------
 -- Last Spell Bar Updates.
 -------------------------------------------------------------------------------------------------------------
-		
+--[[		
 function EMA:UNIT_SPELLCAST_START( event, unitTarget , castGUID, spellID )
 	EMA:UpdateSpellStatus( unitTarget, spellID )
 end		
@@ -3334,6 +3342,7 @@ function EMA:SetTrGCOpt()
 		end
 	end
 end	
+]]
 -------------------------------------------------------------------------------------------------------------
 -- Addon initialization, enabling and disabling.
 -------------------------------------------------------------------------------------------------------------
@@ -3353,7 +3362,7 @@ function EMA:OnInitialize()
 	EMA:SetTeamListVisibility()	
 	-- Is Following to stop spam
 	EMA.isFollowing = false
-	EMA:SetTrGCOpt()
+	--EMA:SetTrGCOpt()
 end
 
 -- Called when the addon is enabled.
@@ -3375,10 +3384,12 @@ function EMA:OnEnable()
 	EMA:RegisterEvent( "GROUP_ROSTER_UPDATE" )
 	EMA:RegisterEvent( "PLAYER_MONEY" )
 	EMA:RegisterEvent("UNIT_PORTRAIT_UPDATE")
+	--[[
 	EMA:RegisterEvent("UNIT_SPELLCAST_START")
 	EMA:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 	EMA:RegisterEvent("UNIT_SPELLCAST_STOP")
 	EMA:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP")
+	]]
 	if EMAPrivate.Core.isEmaClassicBccBuild() == false then
 		EMA:RegisterEvent( "UNIT_HEAL_PREDICTION" )
 		EMA:RegisterEvent( "PLAYER_TALENT_UPDATE")

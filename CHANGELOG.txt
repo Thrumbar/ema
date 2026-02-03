@@ -1,6 +1,15 @@
 ﻿---------------------------
 ChangeLogs:
-ChangeLogs:
+---------------------------
+EMA Version: Release-v5.0(0284)
+
+## Team 
+	-- fixed the popup again! for midnight
+	
+#display team
+	-- removed the support for last spell using TrGCD
+
+
 ---------------------------
 EMA Version: Release-v5.0(0282)
 

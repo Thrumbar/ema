@@ -352,6 +352,17 @@ local function isEmaClassicBccBuild()
  	return classic
 end	
 
+local function isEmaLiveBccBuild() 
+	local LiveBccBuild = false
+	if _G.WOW_PROJECT_ID == _G.WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
+		classic = true
+	end
+	if _G.WOW_PROJECT_ID == _G.WOW_PROJECT_MAINLINE then
+		classic = true
+	end
+	return classic
+end
+
 -------------------------------------------------------------------------------------------------------------
 -- Module management.
 -------------------------------------------------------------------------------------------------------------
@@ -859,6 +870,7 @@ EMAPrivate.Core.SendCommandToToon = SendCommandToToon
 EMAPrivate.Core.OnCommandReceived = OnCommandReceived
 EMAPrivate.Core.isEmaClassicBuild = isEmaClassicBuild
 EMAPrivate.Core.isEmaClassicBccBuild = isEmaClassicBccBuild
+EMAPrivate.Core.isEmaLiveBccBuild = isEmaLiveBccBuild
 EMAPrivate.Core.isEmaBetaBuild = isEmaBetaBuild
 EMAPrivate.Core.isEmaAlphaBuild = isEmaAlphaBuild
 EMAPrivate.Core.SendSettingsAllModules = EMA.SendSettingsAllModules
