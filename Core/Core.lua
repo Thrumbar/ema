@@ -2,7 +2,7 @@
 --				EMA - ( Ebony's MultiBoxing Assistant )    							--
 --				Current Author: Jennifer Cally (Ebony)								--
 --																					--
---				License: All Rights Reserved 2018-2025 Jennifer Cally					--
+--				License: All Rights Reserved 2018-2026 Jennifer Cally				--
 --																					--
 --				Some Code Used from "Jamba" that is 								--
 --				Released under the MIT License 										--
@@ -722,6 +722,14 @@ function EMA:CoreSettingsCreateInfo( top )
 		left, 
 		movingTop,
 		L["THANKS1"]
+	)
+	movingTop = movingTop - headingHeight
+	EMA.settingsControl.labelInformation20 = EMAHelperSettings:CreateContinueLabel( 
+		EMA.settingsControl, 
+		headingWidth, 
+		left, 
+		movingTop,
+		L["THANKS2"]
 	)	
 	--CopyRight heading
 	movingTop = movingTop - labelContinueHeight * 3

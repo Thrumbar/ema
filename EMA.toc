@@ -1,9 +1,9 @@
-## Interface: 120000
+## Interface: 120000, 30403, 11506, 20505, 40402 
 ## Title: EMA
 ## Notes: Ebony's MultiBoxing Assistant
 ## Author: Jennifer Calladine 'Ebony/Blossom'
-## Version: Release-v5.0(0278)
-## SavedVariables: CoreProfileDB, CommunicationsProfileDB, TeamProfileDB, TagProfileDB, MessageProfileDB, InformationProfileDB, InformationClassicProfileDB, DisplayTeamProfileDB, FollowProfileDB, GuildProfileDB, InteractionProfileDB, ItemUseProfileDB, PurchaseProfileDB, QuestProfileDB,  QuestWatcherProfileDB, SellProfileDB, TalkProfileDB, ToonProfileDB, TradeProfileDB, MailProfileDB, BankProfileDB, ISBoxerProfileDB, TeamGearProfileDB
+## Version: Beta-v6.0(0285)
+## SavedVariables: CoreProfileDB, CommunicationsProfileDB, TeamProfileDB, TagProfileDB, MessageProfileDB, InformationProfileDB, InformationClassicProfileDB, DisplayTeamProfileDB, FollowProfileDB, GuildProfileDB, InteractionProfileDB, ItemUseProfileDB, PurchaseProfileDB, QuestProfileDB,  QuestWatcherProfileDB, SellProfileDB, TalkProfileDB, ToonProfileDB, TradeProfileDB, MailProfileDB, BankProfileDB, EquipmentProfileDB
 ## IconTexture: Interface\Addons\EMA\Media\TeamCore.tga
 
 
@@ -27,5 +27,8 @@ Core\Team.lua
 Core\Tag.lua
 Core\Message.lua
 
-#Modules
-Modules\Modules.xml
+# This will only be loaded on Mainline.
+Modules\Modules.xml [AllowLoadGameType mainline]
+
+# This will only be loaded in Vanilla or TBC.
+Modules\Modules_Classic.xml [AllowLoadGameType vanilla, tbc]

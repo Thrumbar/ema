@@ -1,6 +1,30 @@
 ﻿---------------------------
 ChangeLogs:
 ---------------------------
+EMA Version: Beta-v6.0(0285)
+
+	--Vecter has been helping out with EMA and added some really cool stuff for Mightnight so 
+	happy New version its going to take some time for it fully work again -- yes am back to playing wow!
+	
+	-- Too many updates so going to 6.x on EMA!
+
+## Files
+	--TOC chnages using the new API to make TOC Management Better for me and loading parts of EMA for Other wow versions.
+	-- New Logo? looking for feedback!
+
+## Equipment New!
+	-- Made by Vecter a new toy to mange your team Equipment(gear)!
+	
+## KeyBinding Pofiles New
+	-- TODO A wave to save Keybindings by group and load them when ( eg a 2nd keybinding for masters or clones)
+		- dev note: who knows if this helpfull am sure if you know you know
+		
+## SYNC 
+	-- TODO Sync Action bars/UI for "Minions"
+	
+	
+
+---------------------------
 EMA Version: Release-v5.0(0284)
 
 ## Team 

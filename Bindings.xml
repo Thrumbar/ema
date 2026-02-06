@@ -137,5 +137,7 @@
 	<Binding name="SETVIEW" header="TOON" category="EMA">
 		--[[dummy]]
 	</Binding>
-	
+	<!--  Equipment Bindings -->
+	<Binding name="EQUIPMENTWINDOW" header="EQUIPMENT" category="EMA"> --[[dummy]] </Binding>
+	<Binding name="EQUIPMENTCOMPARE" category="EMA"> --[[dummy]] </Binding>
 </Bindings>
