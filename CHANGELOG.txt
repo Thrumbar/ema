@@ -16,7 +16,7 @@ EMA Version: Beta-v6.0(0285)
 	-- Made by Vecter a new toy to mange your team Equipment(gear)!
 	
 ## KeyBinding Pofiles New
-	-- TODO A wave to save Keybindings by group and load them when ( eg a 2nd keybinding for masters or clones)
+	-- TODO A way to save Keybindings by group and load them when ( eg a 2nd keybinding for masters or clones)
 		- dev note: who knows if this helpfull am sure if you know you know
 		
 ## SYNC 
