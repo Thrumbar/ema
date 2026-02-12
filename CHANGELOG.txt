@@ -1,6 +1,15 @@
 ﻿---------------------------
 ChangeLogs:
 ---------------------------
+EMA Version: Beta-v6.0(0286)
+Game Version: 4.4.2/1.15.6/12.0.1/5.5.3
+Date: 12/02/2026
+
+# Toc bump for patch
+
+
+
+---------------------------
 EMA Version: Beta-v6.0(0285)
 
 	--Vecter has been helping out with EMA and added some really cool stuff for Mightnight so 
